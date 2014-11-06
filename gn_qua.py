@@ -2,6 +2,8 @@ __author__ = 'alexstelea'
 
 import numpy
 
+def _matrix_inverse(matrix):
+    return matrix
 
 def gn_qua(list_of_numbers, triple_number, number_of_iterations):
 
@@ -19,12 +21,15 @@ def gn_qua(list_of_numbers, triple_number, number_of_iterations):
     print r
 
     # initialize Jacobian of R
+
+    j = numpy.matrix([1,2,3])
     for i in range(0, 3):
         for j in range(0, number_of_iterations):
             pass
 
     # do N times
         # β = β − (J⊤J)−1 J⊤ r.
+        b = b - _matrix_inverse((j.getT()*j)) * j.getT() * r
 
         # For i=1,...,n,set ri =yi−fβ1,β2,β3(xi).
 
