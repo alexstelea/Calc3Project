@@ -1,4 +1,4 @@
 __author__ = 'alexstelea'
 
-
-# TODO
+def qr_fact_househ(matrixA):
+    pass
