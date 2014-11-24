@@ -2,6 +2,7 @@ __author__ = 'alexstelea'
 
 import numpy
 from numpy.linalg import inv, qr
+from ast import literal_eval
 
 
 def _matrix_inverse(matrix):
@@ -9,8 +10,10 @@ def _matrix_inverse(matrix):
     print inv(matrix)
 
 
-def gn_rat(list_of_numbers, triple_number, number_of_iterations):
-    # number of pairs
+def gn_rat():
+    list_of_numbers = literal_eval(raw_input("List of Points: "))
+    triple_number = literal_eval(raw_input("Initial guesses for Parameters: "))
+    number_of_iterations = input("How many iterations? ")
     n = len(list_of_numbers)
 
     # initialize B as a vector
@@ -72,17 +75,13 @@ def gn_rat(list_of_numbers, triple_number, number_of_iterations):
         j = numpy.array(list_j)
 
     # output B
+    print "Converges towards: "
     print b
     return b
 
 
-if __name__ == '__main__': gn_rat([(0.038, 0.050),
-                                   (0.194, 0.127),
-                                   (0.425, 0.094),
-                                   (0.626, 0.2122),
-                                   (1.253, 0.2729),
-                                   (2.5, 0.2665),
-                                   (3.740, 0.3317)], (0.9, 0.2, 0.1), 5)
+
+if __name__ == '__main__':gn_rat()
 
 '''
 

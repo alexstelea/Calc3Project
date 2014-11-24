@@ -19,26 +19,30 @@ def givens_rotation(a, b):
 
 
 def qr_fact_givens(matrixA):
-    m, n = matrixA.shape
+    m = matrixA.shape[0]
+    n = matrixA.shape[1]
     Q = [[float(x == y) for x in range(m)] for y in range(n)]
     R = matrixA
-    for i in range(n-1):
-        for j in range(m-1):
+    for i in range(n):
+        print i
+
+        for j in range(m):
+            print j
+
             if i is j:
                 pivot_loc = i
-            if i < j:
-                if R[j, i]:
-                    G = np.eye(m)
-                    # print (pivot_x, pivot_y)
-                    c, s = givens_rotation(R[pivot_loc, pivot_loc], R[pivot_loc, pivot_loc+1])
-                    print c,s
-                    G[pivot_loc, pivot_loc] = c
-                    G[pivot_loc, pivot_loc+1] = -s
-                    G[pivot_loc+1, pivot_loc] = s
-                    G[pivot_loc+1, pivot_loc+1] = c
-                    print G
-                    R = np.dot(G.T, R)
-                    Q = np.dot(Q, G)
+            #if i < j:
+            if R[j, i]:
+                G = np.eye(m)
+                # print (pivot_x, pivot_y)
+                c, s = givens_rotation(R[m-2, i], R[m-1, i])
+                #print c,s
+                G[m-pivot_loc-2, m-pivot_loc-2] = c
+                G[m-pivot_loc-2, m-pivot_loc-1] = -s
+                G[m-pivot_loc-1, m-pivot_loc-2] = s
+                G[m-pivot_loc-1, m-pivot_loc-1] = c
+                R = np.dot(G.T, R)
+                Q = np.dot(Q, G)
     print
     print Q
     print R

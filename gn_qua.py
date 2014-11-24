@@ -2,15 +2,23 @@ __author__ = 'alexstelea'
 
 import numpy
 from numpy.linalg import inv, qr
-
+from ast import literal_eval
 
 def _matrix_inverse(matrix):
     # TODO
     print inv(matrix)
 
 
-def gn_qua(list_of_numbers, triple_number, number_of_iterations):
-    # number of pairs
+def gn_qua():
+
+    # list_of_numbers = list()
+    # pair = raw_input()
+    # while pair:
+    #     list_of_numbers.append(literal_eval(pair))
+    #     pair = raw_input().strip('[]')
+    list_of_numbers = literal_eval(raw_input("List of Points: "))
+    triple_number = literal_eval(raw_input("Initial guesses for Parameters: "))
+    number_of_iterations = input("How many iterations? ")
     n = len(list_of_numbers)
 
     # initialize B as a vector
@@ -70,18 +78,16 @@ def gn_qua(list_of_numbers, triple_number, number_of_iterations):
         j = numpy.array(list_j)
 
     # output B
+    print "Converges towards: "
     print b
+
     return b
 
 
-if __name__ == '__main__': gn_qua([(0.1, 2.0), (2.4, -8.1),
-                                   (4.2, -1.1),
-                                   (0.55, 0.37),
-                                   (12.101, 0.735)], (1, 3, -1), 5)
+if __name__ == '__main__': gn_qua()
 
 '''
 
 [(x1,y1), (x2,y2)]
-
 
 '''

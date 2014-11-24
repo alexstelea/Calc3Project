@@ -3,6 +3,7 @@ import math
 
 import numpy
 from numpy.linalg import inv, qr
+from ast import literal_eval
 
 
 def _matrix_inverse(matrix):
@@ -10,8 +11,11 @@ def _matrix_inverse(matrix):
     print inv(matrix)
 
 
-def gn_log(list_of_numbers, triple_number, number_of_iterations):
-    # number of pairs
+def gn_log():
+    list_of_numbers = literal_eval(raw_input("List of Points: "))
+    triple_number = literal_eval(raw_input("Initial guesses for Parameters: "))
+    number_of_iterations = input("How many iterations? ")
+    # n list of numbers
     n = len(list_of_numbers)
 
     # initialize B as a vector
@@ -73,17 +77,13 @@ def gn_log(list_of_numbers, triple_number, number_of_iterations):
         j = numpy.array(list_j)
 
     # output B
+    print "Converges towards: "
     print b
     return b
 
 
-if __name__ == '__main__': gn_log([(0., -4.1),
-                                   (1., -4.47),
-                                   (2., -4.79),
-                                   (3., -5.09),
-                                   (4., -5.35),
-                                   (5., -5.6),
-                                   (10., -6.6)], (-2, 10, 5), 5)
+
+if __name__ == '__main__':gn_log()
 
 '''
 

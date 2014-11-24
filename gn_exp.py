@@ -3,9 +3,15 @@ import math
 
 import numpy
 from numpy.linalg import inv, qr
+from ast import literal_eval
 
 
-def gn_exp(list_of_numbers, triple_number, number_of_iterations):
+def gn_exp():
+    list_of_numbers = literal_eval(raw_input("List of Points: "))
+    triple_number = literal_eval(raw_input("Initial guesses for Parameters: "))
+    number_of_iterations = input("How many iterations? ")
+
+
     # number of pairs
     n = len(list_of_numbers)
 
@@ -74,18 +80,13 @@ def gn_exp(list_of_numbers, triple_number, number_of_iterations):
         j = numpy.array(list_j)
 
     # output B
+    print "Converges towards: "
     print b
     return b
 
 
 if __name__ == '__main__':
-    gn_exp([(0.0, -0.27),
-            (0.7, -0.354),
-            (-1.1, -0.185),
-            (2.1, -0.642),
-            (-0.51, -0.225),
-            (1.17, -0.429),
-            (-3.2, -0.11)], (-0.3, 0.3, 0.3), 5)
+    gn_exp()
 
 '''
 
