@@ -7,7 +7,7 @@ from numpy.linalg import qr
 
 
 def givens_rotation(a, b):
-    print a, b
+    # print a, b
     if b is 0:
         c = 1
         s = 0
@@ -22,19 +22,27 @@ def qr_fact_givens(matrixA):
     m, n = matrixA.shape
     Q = [[float(x == y) for x in range(m)] for y in range(n)]
     R = matrixA
-    print m
-    for i in range(n):
-        G = np.eye(m)
-        print R
-        c, s = givens_rotation(R[i, i], R[i, i+1])
-        G[i, i] = 10
-        G[i, i+1] = -12
-        G[i+1, i] = 11
-        G[i+1, i+1] = 13
-        print G
-
-        R = np.dot(G, R)
-        Q = np.dot(Q, G.T)
+    for i in range(n-1):
+        for j in range(m-1):
+            if i is j:
+                pivot_loc = i
+            if i < j:
+                if R[j, i]:
+                    G = np.eye(m)
+                    # print (pivot_x, pivot_y)
+                    c, s = givens_rotation(R[pivot_loc, pivot_loc], R[pivot_loc, pivot_loc+1])
+                    print c,s
+                    G[pivot_loc, pivot_loc] = c
+                    G[pivot_loc, pivot_loc+1] = -s
+                    G[pivot_loc+1, pivot_loc] = s
+                    G[pivot_loc+1, pivot_loc+1] = c
+                    print G
+                    R = np.dot(G.T, R)
+                    Q = np.dot(Q, G)
+    print
+    print Q
+    print R
+    print
     return Q, R
 
 
@@ -52,9 +60,9 @@ if __name__ == '__main__':
         [-0.38289289, -0.36757717, -1.]])
     q, r = qr_fact_givens(c)
     e, f = qr(c)
-    print np.dot(q, r)
-    print np.dot(e, f)
-    print c
+    print e
+    print f
+    print
     print
     # print q
     # print e
