@@ -1,6 +1,4 @@
 __author__ = 'alexstelea'
-import math
-
 
 import numpy
 from numpy.linalg import inv, qr
@@ -23,7 +21,7 @@ def gn_rat(list_of_numbers, triple_number, number_of_iterations):
     for i in range(n):
         x_i = list_of_numbers[i][0]
         y_i = list_of_numbers[i][1]
-        rational_i = (b.item(0)*x_i/(x_i+b.item(1))) + b.item(2)
+        rational_i = (b.item(0) * x_i / (x_i + b.item(1))) + b.item(2)
         r.append([y_i - rational_i])
 
     r = numpy.array(r)
@@ -32,8 +30,8 @@ def gn_rat(list_of_numbers, triple_number, number_of_iterations):
     list_j = []
     for i in range(n):
         x_i = list_of_numbers[i][0]
-        partial_ri_b1 = -(x_i/(b.item(1) + x_i))
-        partial_ri_b2 = b.item(0)*x_i/((b.item(1) + x_i)**2)
+        partial_ri_b1 = -(x_i / (b.item(1) + x_i))
+        partial_ri_b2 = b.item(0) * x_i / ((b.item(1) + x_i) ** 2)
         partial_ri_b3 = -1
         list_j.append([partial_ri_b1, partial_ri_b2, partial_ri_b3])
 
@@ -45,7 +43,7 @@ def gn_rat(list_of_numbers, triple_number, number_of_iterations):
         Q, R = qr(j)
 
         # set b using the new transposed method
-        inverse_r_dot_q_transpose = numpy.dot(inv(R),Q.T)
+        inverse_r_dot_q_transpose = numpy.dot(inv(R), Q.T)
         inverse_r_dot_q_transpose_dot_r = numpy.dot(inverse_r_dot_q_transpose, r)
         b = b - inverse_r_dot_q_transpose_dot_r
 
@@ -57,7 +55,7 @@ def gn_rat(list_of_numbers, triple_number, number_of_iterations):
         for x in range(n):
             x_i = list_of_numbers[x][0]
             y_i = list_of_numbers[x][1]
-            rational_i = (b.item(0)*x_i/(x_i+b.item(1))) + b.item(2)
+            rational_i = (b.item(0) * x_i / (x_i + b.item(1))) + b.item(2)
             list_r.append([y_i - rational_i])
 
         r = numpy.array(list_r)
@@ -66,8 +64,8 @@ def gn_rat(list_of_numbers, triple_number, number_of_iterations):
         list_j = []
         for l in range(n):
             x_i = list_of_numbers[l][0]
-            partial_ri_b1 = -(x_i/(b.item(1) + x_i))
-            partial_ri_b2 = b.item(0)*x_i/((b.item(1) + x_i)**2)
+            partial_ri_b1 = -(x_i / (b.item(1) + x_i))
+            partial_ri_b2 = b.item(0) * x_i / ((b.item(1) + x_i) ** 2)
             partial_ri_b3 = -1
             list_j.append([partial_ri_b1, partial_ri_b2, partial_ri_b3])
 
@@ -78,13 +76,13 @@ def gn_rat(list_of_numbers, triple_number, number_of_iterations):
     return b
 
 
-if __name__ == '__main__':gn_rat([(0.038,0.050),
-                                  (0.194,0.127),
-                                  (0.425,0.094),
-                                  (0.626,0.2122),
-                                  (1.253,0.2729),
-                                  (2.5,0.2665),
-                                  (3.740,0.3317)], (0.9, 0.2, 0.1), 5)
+if __name__ == '__main__': gn_rat([(0.038, 0.050),
+                                   (0.194, 0.127),
+                                   (0.425, 0.094),
+                                   (0.626, 0.2122),
+                                   (1.253, 0.2729),
+                                   (2.5, 0.2665),
+                                   (3.740, 0.3317)], (0.9, 0.2, 0.1), 5)
 
 '''
 

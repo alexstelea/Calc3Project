@@ -1,7 +1,6 @@
 __author__ = 'alexstelea'
 import math
 
-
 import numpy
 from numpy.linalg import inv, qr
 
@@ -23,7 +22,7 @@ def gn_log(list_of_numbers, triple_number, number_of_iterations):
     for i in range(n):
         x_i = list_of_numbers[i][0]
         y_i = list_of_numbers[i][1]
-        logaritmic_i = (b.item(0)*math.log(x_i + b.item(1))) + b.item(2)
+        logaritmic_i = (b.item(0) * math.log(x_i + b.item(1))) + b.item(2)
         r.append([y_i - logaritmic_i])
 
     r = numpy.array(r)
@@ -32,8 +31,8 @@ def gn_log(list_of_numbers, triple_number, number_of_iterations):
     list_j = []
     for i in range(n):
         x_i = list_of_numbers[i][0]
-        partial_ri_b1 = -(math.log(b.item(1)+x_i))
-        partial_ri_b2 = -(b.item(0)/(b.item(1) + x_i))
+        partial_ri_b1 = -(math.log(b.item(1) + x_i))
+        partial_ri_b2 = -(b.item(0) / (b.item(1) + x_i))
         partial_ri_b3 = -1
         list_j.append([partial_ri_b1, partial_ri_b2, partial_ri_b3])
 
@@ -45,7 +44,7 @@ def gn_log(list_of_numbers, triple_number, number_of_iterations):
         Q, R = qr(j)
 
         # set b using the new transposed method
-        inverse_r_dot_q_transpose = numpy.dot(inv(R),Q.T)
+        inverse_r_dot_q_transpose = numpy.dot(inv(R), Q.T)
         inverse_r_dot_q_transpose_dot_r = numpy.dot(inverse_r_dot_q_transpose, r)
         b = b - inverse_r_dot_q_transpose_dot_r
 
@@ -57,7 +56,7 @@ def gn_log(list_of_numbers, triple_number, number_of_iterations):
         for x in range(n):
             x_i = list_of_numbers[x][0]
             y_i = list_of_numbers[x][1]
-            logaritmic_i = (b.item(0)*math.log(x_i + b.item(1))) + b.item(2)
+            logaritmic_i = (b.item(0) * math.log(x_i + b.item(1))) + b.item(2)
             list_r.append([y_i - logaritmic_i])
 
         r = numpy.array(list_r)
@@ -66,8 +65,8 @@ def gn_log(list_of_numbers, triple_number, number_of_iterations):
         list_j = []
         for l in range(n):
             x_i = list_of_numbers[l][0]
-            partial_ri_b1 = -(math.log(b.item(1)+x_i))
-            partial_ri_b2 = -(b.item(0)/(b.item(1) + x_i))
+            partial_ri_b1 = -(math.log(b.item(1) + x_i))
+            partial_ri_b2 = -(b.item(0) / (b.item(1) + x_i))
             partial_ri_b3 = -1
             list_j.append([partial_ri_b1, partial_ri_b2, partial_ri_b3])
 
@@ -78,13 +77,13 @@ def gn_log(list_of_numbers, triple_number, number_of_iterations):
     return b
 
 
-if __name__ == '__main__':gn_log([(0.,-4.1),
-                                  (1.,-4.47),
-                                  (2.,-4.79),
-                                  (3.,-5.09),
-                                  (4.,-5.35),
-                                  (5.,-5.6),
-                                  (10.,-6.6)], (-2, 10, 5), 5)
+if __name__ == '__main__': gn_log([(0., -4.1),
+                                   (1., -4.47),
+                                   (2., -4.79),
+                                   (3., -5.09),
+                                   (4., -5.35),
+                                   (5., -5.6),
+                                   (10., -6.6)], (-2, 10, 5), 5)
 
 '''
 

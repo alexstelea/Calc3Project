@@ -1,8 +1,13 @@
 __author__ = 'alexstelea'
 
 import random
+import math
 
 import numpy
+
+
+def norm(x):
+    return math.sqrt(sum([x[i] ** 2 for i in range(len(x))]))
 
 
 def trace(matrixA):
@@ -14,7 +19,7 @@ def determinant(matrixA):
     b = matrixA[0][1]
     c = matrixA[1][0]
     d = matrixA[1][1]
-    return a*d - b*c
+    return a * d - b * c
 
 
 def invert(matrixA):
@@ -29,7 +34,7 @@ def invert(matrixA):
 
 
 def create_matrix():
-    matrix = create_random_matrix(-2,2)
+    matrix = create_random_matrix(-2, 2)
     if not determinant(matrix):
         return create_matrix()
     return matrix

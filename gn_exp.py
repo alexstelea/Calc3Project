@@ -1,13 +1,8 @@
 __author__ = 'alexstelea'
 import math
 
-from qr_fact_househ import qr_fact_householder
-
 import numpy
 from numpy.linalg import inv, qr
-
-
-from matrix_operations_helpers import invert
 
 
 def gn_exp(list_of_numbers, triple_number, number_of_iterations):
@@ -22,7 +17,7 @@ def gn_exp(list_of_numbers, triple_number, number_of_iterations):
     for i in range(n):
         x_i = list_of_numbers[i][0]
         y_i = list_of_numbers[i][1]
-        exponential_i = (b.item(0)*math.exp(b.item(1)*x_i)) + b.item(2)
+        exponential_i = (b.item(0) * math.exp(b.item(1) * x_i)) + b.item(2)
         r.append([y_i - exponential_i])
 
     r = numpy.array(r)
@@ -32,8 +27,8 @@ def gn_exp(list_of_numbers, triple_number, number_of_iterations):
     for i in range(n):
         e_pow_b = math.exp(b.item(1))
         x_i = list_of_numbers[i][0]
-        partial_ri_b1 = -(math.exp(b.item(1)*x_i))
-        partial_ri_b2 = -(b.item(0)*math.exp(b.item(1)*x_i)*x_i)
+        partial_ri_b1 = -(math.exp(b.item(1) * x_i))
+        partial_ri_b2 = -(b.item(0) * math.exp(b.item(1) * x_i) * x_i)
         partial_ri_b3 = -1
         list_j.append([partial_ri_b1, partial_ri_b2, partial_ri_b3])
 
@@ -48,7 +43,7 @@ def gn_exp(list_of_numbers, triple_number, number_of_iterations):
         Q, R = qr(j)
 
         # set b using the new transposed method
-        inverse_r_dot_q_transpose = numpy.dot(inv(R),Q.T)
+        inverse_r_dot_q_transpose = numpy.dot(inv(R), Q.T)
         inverse_r_dot_q_transpose_dot_r = numpy.dot(inverse_r_dot_q_transpose, r)
         b = b - inverse_r_dot_q_transpose_dot_r
 
@@ -61,7 +56,7 @@ def gn_exp(list_of_numbers, triple_number, number_of_iterations):
         for x in range(n):
             x_i = list_of_numbers[x][0]
             y_i = list_of_numbers[x][1]
-            exponential_i = (b.item(0)*math.exp(b.item(1)*x_i)) + b.item(2)
+            exponential_i = (b.item(0) * math.exp(b.item(1) * x_i)) + b.item(2)
             list_r.append([y_i - exponential_i])
 
         r = numpy.array(list_r)
@@ -71,8 +66,8 @@ def gn_exp(list_of_numbers, triple_number, number_of_iterations):
         for l in range(n):
             e_pow_b = math.exp(b.item(1))
             x_i = list_of_numbers[l][0]
-            partial_ri_b1 = -(math.exp(b.item(1)*x_i))
-            partial_ri_b2 = -(b.item(0)*math.exp(b.item(1)*x_i)*x_i)
+            partial_ri_b1 = -(math.exp(b.item(1) * x_i))
+            partial_ri_b2 = -(b.item(0) * math.exp(b.item(1) * x_i) * x_i)
             partial_ri_b3 = -1
             list_j.append([partial_ri_b1, partial_ri_b2, partial_ri_b3])
 
@@ -83,13 +78,14 @@ def gn_exp(list_of_numbers, triple_number, number_of_iterations):
     return b
 
 
-if __name__ == '__main__':gn_exp([(0.0, -0.27),
-                                  (0.7, -0.354),
-                                  (-1.1, -0.185),
-                                  (2.1, -0.642),
-                                  (-0.51, -0.225),
-                                  (1.17, -0.429),
-                                  (-3.2, -0.11)], (-0.3, 0.3, 0.3), 5)
+if __name__ == '__main__':
+    gn_exp([(0.0, -0.27),
+            (0.7, -0.354),
+            (-1.1, -0.185),
+            (2.1, -0.642),
+            (-0.51, -0.225),
+            (1.17, -0.429),
+            (-3.2, -0.11)], (-0.3, 0.3, 0.3), 5)
 
 '''
 
