@@ -1,16 +1,12 @@
 __author__ = 'alexstelea'
 
 import numpy
-from numpy.linalg import inv, qr
+from numpy.linalg import qr
 from ast import literal_eval
-
-def _matrix_inverse(matrix):
-    # TODO
-    print inv(matrix)
+from helpers import matrix_inverse
 
 
 def gn_qua():
-
     # list_of_numbers = list()
     # pair = raw_input()
     # while pair:
@@ -50,7 +46,7 @@ def gn_qua():
         Q, R = qr(j)
 
         # set b using the new transposed method
-        inverse_r_dot_q_transpose = numpy.dot(inv(R), Q.T)
+        inverse_r_dot_q_transpose = numpy.dot(matrix_inverse(R), Q.T)
         inverse_r_dot_q_transpose_dot_r = numpy.dot(inverse_r_dot_q_transpose, r)
         b = b - inverse_r_dot_q_transpose_dot_r
 
@@ -86,8 +82,3 @@ def gn_qua():
 
 if __name__ == '__main__': gn_qua()
 
-'''
-
-[(x1,y1), (x2,y2)]
-
-'''

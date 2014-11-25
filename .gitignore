@@ -1,3 +1,4 @@
 *.xml
 .idea/.name
 .idea/Calc3Project.iml
+*.pyc
